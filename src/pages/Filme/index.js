@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import "./filme.css";
+import { toast } from 'react-toastify';
 
 function Filme() {
   const { id } = useParams();
@@ -46,13 +47,13 @@ function Filme() {
     );
 
     if (hasFilme) {
-      alert("Já tem na lista");
+      toast.warn("Filme já está na lista");
       return;
     }
 
     filmesSalvos.push(filme);
     localStorage.setItem("@gustaflix", JSON.stringify(filmesSalvos));
-    alert("Filme salvo");
+    toast.success("salvou")
   }
 
   if (loading) {
